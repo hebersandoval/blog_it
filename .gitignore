@@ -53,3 +53,6 @@ node_modules/
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Other
+notes.txt
