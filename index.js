@@ -1,3 +1,25 @@
+const express = require('express');
+
+const app = express();
+const port = 3000;
+
+app.get('/', (request, response) => {
+    response.json({
+        name: 'Bob',
+    });
+});
+
+app.get('/about', (request, response) => {
+    response.send({
+        name: 'Jane',
+    });
+});
+
+app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
+});
+
+/*
 const http = require('http');
 const fs = require('fs');
 
@@ -26,3 +48,4 @@ const server = http.createServer((request, response) => {
 });
 
 server.listen(3000);
+*/
