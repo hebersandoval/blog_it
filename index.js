@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-// Use assests
+// Use assets
 app.use(express.static('public'));
 
 app.get('/', (request, response) => {
