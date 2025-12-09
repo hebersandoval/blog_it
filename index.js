@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 
-const edgeTempleEngine = require('express-edge');
+const { engine } = require('express-handlebars');
 
 const app = express();
 const port = 3000;
@@ -10,8 +10,16 @@ const port = 3000;
 app.use(express.static('public'));
 
 // Sets view engine
-app.use(edgeTempleEngine);
 app.set('views', `${__dirname}/views`);
+app.engine(
+    '.hbs',
+    engine({
+        extname: 'hbs', // .handlebars
+        layoutsDir: path.join(__dirname, 'views/layouts'),
+        defaultLayout: 'main.hbs',
+    })
+);
+app.set('view engine', '.hbs');
 
 // Routes
 app.get('/', (request, response) => {
@@ -19,15 +27,15 @@ app.get('/', (request, response) => {
 });
 
 app.get('/about', (request, response) => {
-    response.sendFile(path.resolve(__dirname, 'pages/about.html'));
+    response.render('about');
 });
 
 app.get('/contact', (request, response) => {
-    response.sendFile(path.resolve(__dirname, 'pages/contact.html'));
+    response.render('contact');
 });
 
 app.get('/post', (request, response) => {
-    response.sendFile(path.resolve(__dirname, 'pages/post.html'));
+    response.render('post');
 });
 
 app.listen(port, () => {
