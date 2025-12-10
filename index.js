@@ -38,7 +38,7 @@ app.get('/about', (request, response) => {
 });
 
 app.get('/contact', (request, response) => {
-    response.render('contact');
+    response.render('contact', { message: 'We will respond in a jiffy' });
 });
 
 app.get('/invoice', (request, response) => {
@@ -47,7 +47,7 @@ app.get('/invoice', (request, response) => {
 
 // Catch-all route with middleware-style handler
 app.use((request, response) => {
-    response.status(404).send('Page Not Found');
+    response.status(404).render('index', { message: 'Page not found' });
 });
 
 const PORT = 3000;
