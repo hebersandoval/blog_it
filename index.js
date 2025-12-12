@@ -14,9 +14,11 @@ const userRouter = require('./routes/user.route');
 const app = express();
 
 // Use assets
-app.use(express.static('public'));
+app.use(express.static('./public'));
 // Report detailed logs
 app.use(morgan('dev'));
+// Middleware to process form data
+app.use(express.urlencoded({ extended: false }));
 // Session
 app.use(
     session({
