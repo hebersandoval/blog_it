@@ -11,6 +11,8 @@ const { engine } = require('express-handlebars');
 
 const userRouter = require('./routes/user.route');
 
+const dashoardRouter = require('./routes/dashboard.route');
+
 const app = express();
 
 // Use assets
@@ -43,6 +45,8 @@ app.set('view engine', '.hbs');
 
 // Routes
 app.use('/', userRouter);
+
+app.use('/dashboard', dashoardRouter);
 
 app.use((request, response) => {
     response.status(404).render('index', { message: 'Page not found' });
