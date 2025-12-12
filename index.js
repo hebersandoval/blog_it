@@ -50,13 +50,6 @@ app.get('/invoice', (request, response) => {
     response.render('invoice');
 });
 
-// Catch-all route with middleware-style handler
-/*
-app.use((request, response) => {
-    response.status(404).render('index', { message: 'Page not found' });
-});
-*/
-
 const PORT = 3000;
 
 app.listen(PORT, () => {
