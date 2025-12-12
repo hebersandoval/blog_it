@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const session = require('express-session');
 
 require('dotenv').config({ debug: true });
 require('./libs/dbConnect');
@@ -16,6 +17,14 @@ const app = express();
 app.use(express.static('public'));
 // Report detailed logs
 app.use(morgan('dev'));
+// Session
+app.use(
+    session({
+        secret: process.env.AUTH_SECRET,
+        saveUninitialized: true,
+        resave: false,
+    })
+);
 
 // Sets view engine
 app.set('views', `${__dirname}/views`);
