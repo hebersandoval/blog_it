@@ -4,10 +4,29 @@
 
 <div class='container my-5'>
     <div class='p-5 text-center bg-body-tertiary rounded-3'>
-        <h1 class='text-body-emphasis'>{{ title }}</h1>
+        <h1 class='text-body-emphasis'>{{title}}</h1>
         <p class='lead'>
-            This is a simple Bootstrap jumbotron that sits within a
-            <code>.container</code>, recreated with built-in utility classes.
+            Create an account today.
         </p>
     </div>
+
+    {{! Form }}
+    <form action='/signup' method='post'>
+
+        {{#if errors}}
+            {{#each errors}}
+                <div class='alert alert-danger'>{{this.msg}}</div>
+            {{/each}}
+        {{/if}}
+
+        <div class='mb-3'>
+            <label for='inputEmail' class='form-label'>Email address</label>
+            <input type='email' class='form-control' id='inputEmail' placeholder='name@example.com' />
+        </div>
+        <div class='mb-3'>
+            <label for='inputPassword' class='form-label'>Password</label>
+            <input type='password' id='inputPassword' class='form-control' />
+        </div>
+        <button type='submit' class='btn btn-primary'>Sign up</button>
+    </form>
 </div>

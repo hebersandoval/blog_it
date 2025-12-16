@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const { getUser, createUser, deleteUser } = require('../controllers/user.controller');
+const { validateSignup, signup } = require('../controllers/user.controller');
 
 // User routes
 router.get('/', (request, response) => {
@@ -14,7 +14,9 @@ router.get('/login', (request, response) => {
 });
 
 router.get('/signup', (request, response) => {
-    response.render('pages/signup', { title: 'Sign up' });
+    response.render('pages/signup', { title: 'Sign up', errors: request.flash('errors') });
 });
+
+router.post('/signup', validateSignup, signup);
 
 module.exports = router;

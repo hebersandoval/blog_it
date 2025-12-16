@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 require('dotenv').config({ debug: true });
 require('./libs/dbConnect');
@@ -29,6 +30,8 @@ app.use(
         resave: false,
     })
 );
+// Flash messages (call after session)
+app.use(flash());
 
 // Sets view engine
 app.set('views', `${__dirname}/views`);
