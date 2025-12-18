@@ -7,7 +7,7 @@ const validateSignup = [
     body('password', 'Password must not be empty').notEmpty(),
     body('password', 'Password must be 6+ characters long').isLength({ min: 6 }),
     body('repeatPassword', 'Repeat password must not be empty').notEmpty(),
-    body('repeatPassword', 'Passwords do not match').custom((value, { request }) => value === request.body.password),
+    body('repeatPassword', 'Passwords do not match').custom((value, { req }) => value === req.body.password),
 ];
 
 const signup = async (request, response) => {
