@@ -15,9 +15,7 @@
 
             <!-- Form -->
             <form action="/signup" method="post">
-                <% if (typeof errors !== 'undefined') { %> <% errors.forEach(function(error) { %>
-                <div class="alert alert-danger"><%= error.msg %></div>
-                <% }) %> <% } %>
+                <%- include('../partials/formErrors') %>
 
                 <div class="mb-3">
                     <label for="inputEmail" class="form-label">Email address</label>

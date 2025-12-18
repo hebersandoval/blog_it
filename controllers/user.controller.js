@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const User = require('../libs/models/user.model');
 
 const { body, validationResult } = require('express-validator');
@@ -44,6 +46,12 @@ const signup = async (request, response) => {
 
         const result = await User.create(user);
         request.session.userId = result._id;
+        // When signup is successful
+        request.flash('info', {
+            message: 'Signup successful',
+            type: 'success',
+        });
+
         response.redirect('/dashboard');
     }
 };
