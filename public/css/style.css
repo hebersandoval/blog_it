@@ -86,12 +86,24 @@ button:hover {
     background: #2980b9;
 }
 
+#dashboardPage {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
 .dashboard-layout {
     display: flex;
     gap: 2rem;
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 2rem;
+    flex: 1;
+}
+
+.dashboard-content {
     flex: 1;
 }
 
@@ -114,10 +126,6 @@ button:hover {
 
 .sidebar a:hover {
     background: #bdc3c7;
-}
-
-.dashboard-content {
-    flex: 1;
 }
 
 .hidden {
