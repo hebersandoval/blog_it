@@ -8,3 +8,20 @@ const validateCustomer = [
     body('phone', 'Phone must not be empty').notEmpty(),
     body('address', 'Address must not be empty').notEmpty(),
 ];
+
+const showCustomers = async (request, response) => {
+    const query = { owner: request.session.userId };
+    const customers = await Customer.find(query);
+
+    response.render('pages/customers', {
+        title: 'Customers',
+        type: 'data',
+        customers,
+        info: request.flash('info')[0],
+    });
+};
+
+module.exports = {
+    showCustomers,
+    validateCustomer,
+};
