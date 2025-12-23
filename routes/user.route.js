@@ -4,6 +4,8 @@ const router = express.Router();
 
 const { validateSignup, signup, validateLogin, login, logout } = require('../controllers/user.controller');
 
+const { redirectAuthenticated } = require('../libs/middleware');
+
 // User routes
 router.get('/', (request, response) => {
     response.render('pages/index', {
@@ -12,7 +14,8 @@ router.get('/', (request, response) => {
     });
 });
 
-router.get('/signup', (request, response) => {
+// Authenticated middleware
+router.get('/signup', redirectAuthenticated, (request, response) => {
     response.render('pages/signup', {
         title: 'Sign up',
         user: request.flash('data')[0],
@@ -23,7 +26,8 @@ router.get('/signup', (request, response) => {
 
 router.post('/signup', validateSignup, signup);
 
-router.get('/login', (request, response) => {
+// Authenticated middleware
+router.get('/login', redirectAuthenticated, (request, response) => {
     response.render('pages/login', {
         title: 'Sign in',
         user: request.flash('data')[0],
