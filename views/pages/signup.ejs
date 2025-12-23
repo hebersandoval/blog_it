@@ -11,13 +11,23 @@
                 <%- include('../partials/formErrors') %>
 
                 <label for="email">Email</label>
-                <input name="email" type="email" id="email" value="<%= user?.email || '' %>" />
+                <input 
+                    name="email" 
+                    type="email" 
+                    id="email" 
+                    value="<%= user?.email || '' %>" 
+                />
 
                 <label for="password">Password</label>
                 <input name="password" type="password" id="password" value="<%= user?.password || '' %>" />
 
                 <label for="password">Renter password</label>
-                <input name="repeatPassword" type="password" id="password" value="<%= user?.repeatPassword || '' %>" />
+                <input 
+                    name="repeatPassword" 
+                    type="password" 
+                    id="password" 
+                    value="<%= user?.repeatPassword || '' %>" 
+                />
 
                 <button type="submit">Sign up</button>
             </form>
