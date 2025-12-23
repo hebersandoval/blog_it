@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head') %>
+    <body>
+        <%- include('../partials/nav') %>
+
+        <!-- Content body here -->
+        <main id="dashboardPage" class="">
+            <div class="dashboard-layout">
+                <aside class="sidebar">
+                    <h3>Menu</h3>
+                    <a href="#">Home</a>
+                    <a href="#">Customers</a>
+                    <a href="#">Invoices</a>
+                    <br />
+                    <a href="/logout">Log out</a>
+                </aside>
+
+                <div class="dashboard-content">
+                    <h2>Dashboard</h2>
+                    <p>Customers will be herer.</p>
+                    <section>
+                        <h3>Search them</h3>
+                        <p>What are they up to.</p>
+
+                        <% if (type === 'data') { %>
+                            <%- include('../partials/customerData') %>
+                        <% } else { %>
+                            <%- include('../partials/customerForm') %>
+                        <% } %>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <%- include('../partials/footer') %>
+
+        <!-- Scripts -->
+        <%- include('../partials/script') %>
+    </body>
+</html>
