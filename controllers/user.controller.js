@@ -109,7 +109,7 @@ const login = async (request, response) => {
 logout = (request, response) => {
     request.session.userId = null;
     request.flash('info', {
-        message: 'Logout successful',
+        message: 'Logged out successful',
         type: 'success',
     });
 
