@@ -1,1 +1,32 @@
-invoice page
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head') %>
+    <body>
+        <%- include('../partials/nav') %>
+
+        <!-- Content body here -->
+        <main id="dashboardPage" class="">
+            <div class="dashboard-layout">
+                
+                <%- include('../partials/sidebar') %>
+
+                <div class="dashboard-content">
+                    <h2>Dashboard</h2>
+                    <h4>Welcome back, </h4>
+                    <section>
+                        <% if (type === 'data') { %>
+                            <%- include('../partials/invoiceData') %>
+                        <% } else { %>
+                            <%- include('../partials/invoiceForm') %>
+                        <% } %>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <%- include('../partials/footer') %>
+
+        <!-- Scripts -->
+        <%- include('../partials/script') %>
+    </body>
+</html>
