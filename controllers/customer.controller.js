@@ -45,8 +45,46 @@ const createCustomer = async (request, response) => {
     response.redirect('/dashboard/customers');
 };
 
+const editCustomer = async (request, response) => {
+    const customerId = request.params.id;
+    const customer = await Customer.findById(customerId);
+
+    response.render('pages/customers', {
+        title: 'Edit customer',
+        type: 'form',
+        formAction: 'edit',
+        customer: request.flash('data')[0] || customer,
+        errors: request.flash('errors'),
+    });
+};
+
+const updateCustomer = async (request, response) => {
+    const validationErrors = validationResult(request);
+
+    if (!validationErrors.isEmpty()) {
+        const errors = validationErrors.array();
+        request.flash('errors', errors);
+        request.flash('data', request.body);
+
+        return response.redirect('edit');
+    }
+
+    const customerId = request.params.id;
+    const customerData = request.body;
+
+    await Customer.findByIdAndUpdate(customerId, customerData);
+    request.flash('info', {
+        message: 'Customer updated',
+        type: 'success',
+    });
+
+    response.redirect('/dashboard/customers');
+};
+
 module.exports = {
     showCustomers,
     createCustomer,
+    editCustomer,
+    updateCustomer,
     validateCustomer,
 };
