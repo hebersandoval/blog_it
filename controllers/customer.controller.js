@@ -21,7 +21,32 @@ const showCustomers = async (request, response) => {
     });
 };
 
+const createCustomer = async (request, response) => {
+    const validationErrors = validationResult(request);
+
+    if (!validationErrors.isEmpty()) {
+        const errors = validationErrors.array();
+        request.flash('errors', errors);
+        request.flash('data', request.body);
+
+        return response.redirect('create');
+    }
+
+    const newCustomer = request.body;
+    newCustomer.owner = request.session.userId;
+
+    await Customer.create(newCustomer);
+
+    request.flash('info', {
+        message: 'Customer created',
+        type: 'success',
+    });
+
+    response.redirect('/dashboard/customers');
+};
+
 module.exports = {
     showCustomers,
+    createCustomer,
     validateCustomer,
 };

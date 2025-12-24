@@ -1,8 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-const { showCustomers } = require('../controllers/customer.controller');
+const { showCustomers, createCustomer, validateCustomer } = require('../controllers/customer.controller');
 
 router.get('/', showCustomers);
+
+router.get('/create', function (request, response) {
+    response.render('pages/customers', {
+        title: 'Create customer',
+        formAction: 'create',
+        type: 'form',
+        customer: request.flash('data')[0],
+        errors: request.flash('errors'),
+    });
+});
 
 module.exports = router;

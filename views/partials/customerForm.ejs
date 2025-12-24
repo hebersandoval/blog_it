@@ -1,9 +1,9 @@
 <section>
-    <h3>New Customers</h3>
+    <h3>Create customer</h3>
 
     <%- include('../partials/formErrors') %>
 
-    <form action="/dashboard/customers" method="GET">
+    <form action="<%- formAction %>" method="POST">
         <div style="max-width: 500px">
             <label for="name">Name</label>
             <input
@@ -41,8 +41,8 @@
                 value="<%= customer?.address || '' %>"
             />
 
-            <button type="submit">Search</button>
-            <a href="/dashboard/customers" style="margin-left: 1rem; color: #3498db">Clear</a>
+            <button type="submit">Create customer</button>
+            <a href="/dashboard/customers" style="margin-left: 1rem; color: #3498db">Cancel</a>
         </div>
     </form>
 </section>
