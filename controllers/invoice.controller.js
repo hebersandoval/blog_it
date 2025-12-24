@@ -10,11 +10,20 @@ const validateInvoice = [
     body('status', 'Select the status').notEmpty(),
 ];
 
+// Pull referenced document data; pull the customer name for each invoice we have
+const populateInvoices = (query) => {
+    return query.populate({
+        path: 'customer',
+        model: Customer,
+        select: '_id name',
+    });
+};
+
 // Show
 const showInvoices = async (request, response) => {
     const query = { owner: request.session.userId };
 
-    const invoices = await Invoice.find(query);
+    const invoices = await populateInvoices(Invoice.find(query));
     response.render('pages/invoices', {
         title: 'Invoices',
         type: 'data',
@@ -23,4 +32,6 @@ const showInvoices = async (request, response) => {
     });
 };
 
-module.exports = { showInvoices };
+module.exports = {
+    showInvoices,
+};
