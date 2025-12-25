@@ -32,6 +32,30 @@ const showInvoices = async (request, response) => {
     });
 };
 
+const createInvoice = async (request, response) => {
+    const validationErrors = validationResult(request);
+
+    if (!validationErrors.isEmpty()) {
+        const errors = validationErrors.array();
+        request.flash('errors', errors);
+        request.flash('data', request.body);
+
+        return response.redirect('create');
+    }
+
+    const newInvoice = request.body;
+    newInvoice.owner = request.session.userId;
+
+    await Invoice.create(newInvoice);
+    request.flash('info', {
+        message: 'New invoice created',
+        type: 'success',
+    });
+
+    response.redirect('/dashboard/invoices');
+};
+
 module.exports = {
     showInvoices,
+    createInvoice,
 };
