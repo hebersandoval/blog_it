@@ -32,6 +32,15 @@ const showInvoices = async (request, response) => {
     });
 };
 
+// Get the customer data for the invoice form
+const getCustomers = async (request, response, next) => {
+    const customersQuery = { owner: request.session.userId };
+    const customers = await Customer.find(customersQuery);
+    // The customers data is attached to the request.customers property, so the next middleware can access it
+    request.customers = customers;
+    next();
+};
+
 const createInvoice = async (request, response) => {
     const validationErrors = validationResult(request);
 
@@ -58,4 +67,6 @@ const createInvoice = async (request, response) => {
 module.exports = {
     showInvoices,
     createInvoice,
+    getCustomers,
+    validateInvoice,
 };
