@@ -15,6 +15,11 @@ const showDashboard = async (request, response) => {
         model: Customer,
         select: '_id name',
     });
+
+    // Total amount paid
+    const totalPaid = allInvoices.reduce((sum, invoice) => {
+        return invoice.status === 'paid' ? sum + invoice.amount : sum;
+    }, 0);
 };
 
 module.exports = {
