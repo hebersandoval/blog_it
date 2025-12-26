@@ -26,8 +26,32 @@ const showDashboard = async (request, response) => {
         return invoice.status === 'pending' ? sum + invoice.amount : sum;
     }, 0);
 
+    // Sort invoices in descending order
+    allInvoices.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Data to load chart
+    const revenueData = [];
+
+    for (let i = 0; i < 6; i++) {
+        const today = new Date();
+        today.setMonth(today.getMonth() - i);
+        const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+        const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+        const month = today.toLocaleDateString('default', { month: 'short' });
+
+        const revenueForMonth = allInvoices
+            .filter((invoice) => {
+                return new Date(invoice.date) >= firstDay && new Date(invoice.date) <= lastDay;
+            })
+            .reduce((total, invoice) => total + invoice.amount, 0);
+
+        revenueData.unshift({ month, revenue: revenueForMonth });
+    }
+
     response.render('pages/dashboard', {
         title: 'Dashboard',
+        // Data for chart
+        revenueData: JSON.stringify(revenueData),
         invoiceCount,
         customerCount,
         totalPaid,

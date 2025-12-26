@@ -91,14 +91,15 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const canvas = document.getElementById('revenueChart');
+    const revenueData = JSON.parse('<%- revenueData %>');
 
     new Chart(canvas, {
         type: 'bar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: revenueData.map(item => item.month),
             datasets: [{
                 label: 'Revenue',
-                data: [100, 200, 300, 400, 500, 600],
+                data: revenueData.map(item => item.revenue),
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
