@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const { showInvoices, createInvoice, getCustomers, validateInvoice } = require('../controllers/invoice.controller');
+const {
+    showInvoices,
+    createInvoice,
+    getCustomers,
+    editInvoice,
+    validateInvoice,
+} = require('../controllers/invoice.controller');
 
 router.get('/', showInvoices);
 
@@ -21,5 +27,7 @@ router.get('/create', getCustomers, (request, response) => {
 });
 
 router.post('/create', validateInvoice, createInvoice);
+
+router.get('/:id/edit', getCustomers, editInvoice);
 
 module.exports = router;

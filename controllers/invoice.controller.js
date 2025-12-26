@@ -84,5 +84,6 @@ module.exports = {
     showInvoices,
     createInvoice,
     getCustomers,
+    editInvoice,
     validateInvoice,
 };
