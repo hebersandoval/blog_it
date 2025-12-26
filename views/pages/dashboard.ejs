@@ -48,6 +48,10 @@
                             <div class="stat-card">
                                 <h3>Recent Revenue</h3>
                                 <p>Monthly revenue breakdown and trends for the current quarter.</p>
+
+                                <!-- Load chart here -->
+                                <canvas id="revenueChart" width="600" height="400"></canvas>
+                                <p>Last 6 months</p>
                             </div>
                             <!-- Latest invoices box -->
                             <div class="stat-card">
@@ -83,3 +87,29 @@
         <%- include('../partials/script') %>
     </body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const canvas = document.getElementById('revenueChart');
+
+    new Chart(canvas, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: 'Revenue',
+                data: [100, 200, 300, 400, 500, 600],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+            }],
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
+    });
+</script>
