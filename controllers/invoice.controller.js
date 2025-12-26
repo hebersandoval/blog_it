@@ -64,6 +64,22 @@ const createInvoice = async (request, response) => {
     response.redirect('/dashboard/invoices');
 };
 
+const editInvoice = async (request, response) => {
+    console.log(request);
+    const invoiceId = request.params.id;
+    const invoice = await populateInvoices(Invoice.findById(invoiceId));
+    const { customers } = request;
+
+    response.render('pages/invoices', {
+        title: 'Edit invoice',
+        type: 'form',
+        formAction: 'edit',
+        customers,
+        invoice: request.flash('data')[0] || invoice,
+        errors: request.flash('errors'),
+    });
+};
+
 module.exports = {
     showInvoices,
     createInvoice,

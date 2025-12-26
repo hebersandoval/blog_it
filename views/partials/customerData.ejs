@@ -31,7 +31,6 @@
             <th>Address</th>
             <th>Phone</th>
             <th>Action</th>
-            <!-- <th></th> -->
         </tr>
         </thead>
 
@@ -45,7 +44,7 @@
                 <td style="padding: 1rem; text-align: center">
                     <!-- Edit Link -->
                     <a
-                        href="/dashboard/customers/<%= customer._id %>/edit"
+                        href="customers/<%= customer._id %>/edit"
                         style="color: #3498db; margin-right: 1.5rem; font-weight: 500"
                     >
                         Edit
@@ -77,10 +76,6 @@
                     <!-- Uses a modal -->
                     <button class="btn btn-danger" onclick="deleteModal('<%= customer._id %>')">Delete</button>
                 </td>
-
-
-                <td><a href="customers/<%= customer._id %>/edit"><i></i></a></td>
-                <td></td>
             </tr>
         <% }); %>
         </tbody>
