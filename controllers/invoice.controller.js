@@ -24,12 +24,6 @@ const populateInvoices = (query, search) => {
     }
 
     return query.populate(populateOptions).then((invoices) => invoices.filter((invoices) => invoices.customer != null));
-
-    return query.populate({
-        path: 'customer',
-        model: Customer,
-        select: '_id name',
-    });
 };
 
 // Show
@@ -40,6 +34,7 @@ const showInvoices = async (request, response) => {
     const { search } = request.query;
 
     const invoices = await populateInvoices(Invoice.find(query), search);
+
     response.render('pages/invoices', {
         title: 'Invoices',
         type: 'data',
