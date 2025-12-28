@@ -1,4 +1,4 @@
-# The Invoicing App
+# Invoice Hub
 
 ## Features
 
